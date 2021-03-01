@@ -1,0 +1,103 @@
+{% extends 'clienttemplates/clientbase.html' %}
+{% load static %}
+{% block productlist %}active{% endblock %}
+
+{% block content %}
+
+    <div class="page-title image-title"
+         style="background-image:url({% static 'clientstatic/img/sli00.jpg' %}); height: 350px; object-fit: contain;">
+    </div>
+    <section class="tr-single-detail gray-bg">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12 mx-3">
+                    <div class="tab-content tabs">
+
+                        <!-- Overview -->
+                        <div class="row">
+                            <div class="tr-single-box">
+                                <div class="tr-single-header">
+                                    <h4><i class="fa fa-star-o"></i>Overview</h4>
+                                </div>
+                                <div class="tr-single-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="list-thumb-box">
+                                                <img src="{{ item.image.url }}" class="img-responsive" alt=""/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="list-overview-detail">
+                                                <h4>{{ item.title }}</h4>
+                                                <ul class="extra-service">
+                                                    <li>
+                                                        <div class="icon-box-icon-block">
+                                                            <div class="icon-box-round">
+                                                                <i class="ti-headphone-alt"></i>
+                                                            </div>
+                                                            <div class="icon-box-text">
+                                                                {{ item.category }}
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="icon-box-icon-block">
+                                                            <div class="icon-box-round">
+                                                                <i class="ti-user"></i>
+                                                            </div>
+                                                            <div class="icon-box-text">
+                                                                Rs.{{ item.price }}
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-box">
+                        <form class="c-form" action="{% url 'eapp:orderproduct' item.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label>Name<sup class="cl-danger">*</sup></label>
+                                    {{ order_form.name }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label>Phone<sup class="cl-danger">*</sup></label>
+                                    {{ order_form.phone }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn theme-btn btn-arrow">Order</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
+

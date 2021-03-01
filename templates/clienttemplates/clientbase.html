@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %} {% endblock %}</title>
+
+    <!-- Plugins CSS -->
+    
+	<link rel="stylesheet" href="{% static 'clientstatic/plugins/css/plugins.css' %}">	
+    
+    <!-- Custom style -->
+    <link href="{% static 'clientstatic/css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'clientstatic/css/responsiveness.css' %}" rel="stylesheet">
+	<link id="jssDefault" rel="stylesheet" href="{% static 'clientstatic/css/skins/default.css' %}">
+
+	{% block link %}  {% endblock %}
+	
+	<style>
+
+			#snackbar {
+			  visibility: hidden;
+			  min-width: 250px;
+			  margin-left: -125px;
+			  background-color: #FF5430;
+			  color: #ffffff;
+			  text-align: center;
+			  border-radius: 2px;
+			  padding: 16px;
+			  position: fixed;
+			  z-index: 1;
+			  left: 50%;
+			  bottom: 53px;
+			  font-size: 17px;
+
+			}
+
+			#snackbar.show {
+			  visibility: visible;
+			  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+			  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+			}
+
+			@-webkit-keyframes fadein {
+			  from {bottom: 0; opacity: 0;} 
+			  to {bottom: 30px; opacity: 1;}
+			}
+
+			@keyframes fadein {
+			  from {bottom: 0; opacity: 0;}
+			  to {bottom: 30px; opacity: 1;}
+			}
+
+			@-webkit-keyframes fadeout {
+			  from {bottom: 30px; opacity: 1;} 
+			  to {bottom: 0; opacity: 0;}
+			}
+
+			@keyframes fadeout {
+			  from {bottom: 30px; opacity: 1;}
+			  to {bottom: 0; opacity: 0;}
+			}
+
+		
+	</style>
+
+
+	</head>
+	
+	<body>
+	
+		<!-- ======================= Start Navigation ===================== -->
+		<nav class="navbar navbar-default navbar-mobile navbar-fixed light bootsnav">
+			<div class="container">
+			
+				<!-- Start Logo Header Navigation -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+						<i class="fa fa-bars"></i>
+					</button>
+					<a class="navbar-brand" href="">
+						<img src="{% static 'clientstatic/img/logo.png' %}" class="logo logo-scroll" style="max-height: 50px; width: 100%; object-fit: contain;"> 
+						<img src="{% static 'clientstatic/img/logo.png' %}" class="logo logo-display" style="max-height: 50px; width: 100%; object-fit: contain;">
+					</a>
+
+				</div>
+				<!-- End Logo Header Navigation -->
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="navbar-menu">
+				
+					<ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
+					
+						<li class="{% block homepage %}{% endblock %} ">
+							<a href="">Home</a>
+							
+						</li>
+						<!-- <li class="dropdown {% block packagelist %}{% endblock %}">
+
+							
+						<li class="{% block service %}{% endblock %}">
+							<a href="">Services</a>
+							
+						</li>
+					
+
+						<li class="{% block albumlist %}{% endblock %}">
+							<a href="">Categories</a>
+							
+						</li>
+					
+						<li class ="{% block productlist %}{% endblock %}">
+							<a href="{% url 'eapp:productlist' %}" >Products</a>
+							
+						</li>
+						<li class ="{% block aboutus %}{% endblock %}">
+							<a href="">About us</a>
+							
+						</li>
+																				
+									
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right">
+						<li class="{% block contactus %}{% endblock %}"><a class="btn-signup red-btn" href=""><span class="ti-briefcase"></span>Contact Us</a></li> 
+					</ul>
+						
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>  
+		</nav>
+		<!-- ======================= End Navigation ===================== -->
+{% block content %}   {% endblock %}
+
+		
+		{% if messages %}
+			<div id="snackbar">
+				{% for m in messages %}
+					{{ m}}
+				{% endfor %}
+			</div>
+			
+		{% endif %}
+
+		
+		 
+		<!-- =================== START JAVASCRIPT ================== -->
+		<script src="{% static 'clientstatic/plugins/js/jquery.min.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/viewportchecker.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/bootsnav.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/slick.min.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/jquery.nice-select.min.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/jquery.fancybox.min.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/jquery.downCount.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/freshslider.1.0.0.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/moment.min.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/daterangepicker.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/wysihtml5-0.3.0.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/bootstrap-wysihtml5.js' %}"></script>
+		
+		<!-- Dashboard Js -->
+		<script src="{% static 'clientstatic/plugins/js/jquery.slimscroll.min.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/jquery.metisMenu.js' %}"></script>
+		<script src="{% static 'clientstatic/plugins/js/jquery.easing.min.js' %}"></script>
+ 
+		<!-- Custom Js -->
+		<script src="{% static 'clientstatic/js/custom.js' %}"></script>
+		
+		<script src="{% static 'clientstatic/js/jQuery.style.switcher.js' %}"></script>
+		<script>
+			function openRightMenu() {
+				document.getElementById("rightMenu").style.display = "block";
+			}
+			function closeRightMenu() {
+				document.getElementById("rightMenu").style.display = "none";
+			}
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#styleOptions').styleSwitcher();
+			});
+		</script>
+
+		<script>
+			$(document).ready(function(){
+			  var x = document.getElementById("snackbar");
+			  x.className = "show";
+			  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+			})
+		</script>
+
+		{% block script %}
+		 {% endblock %}
+
+	
+    </body>
+
+</html>
